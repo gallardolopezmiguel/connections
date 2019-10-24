@@ -2,7 +2,7 @@ const express = require ('express');
 const cors = require ('cors');
 const mongoose = require ('mongoose');
 const bodyParser = require('body-parser');
-const userRoutes = require('.routes/usersRoute');
+const userRoutes = require('./routes/userRoute');
 const app = express();
 
 // middlewares
@@ -17,7 +17,7 @@ connection.once('open', () => {
 });
 
 // add user as base route
-app.use('/user', userRoutes);
+app.use('/users', userRoutes);
 
 // Create server
 app.listen(3000, () => {

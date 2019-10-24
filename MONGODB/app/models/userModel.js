@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
 // create user schema
-const UserSchema = new Schema ({
+const UserSchema = new schema ({
     name: {
         type: String,
         required: true
@@ -17,7 +17,7 @@ const UserSchema = new Schema ({
         required: true
     }
 });
-const newUserSchema = new Schema();
+const newUserSchema = new schema();
 // modify a schema
 newUserSchema.add(UserSchema).add({
     hasPet: {

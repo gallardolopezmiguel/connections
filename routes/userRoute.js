@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const userController = require('../app/controllers/userController');
+const userController = require('../MONGODB/app/controllers/userController');
 
 //route /users/register
 
