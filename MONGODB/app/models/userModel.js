@@ -1,28 +1,36 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
 
-const schema = mongoose.Schema;
+const saltRounds = 10;
+const Schema = mongoose.Schema;
 
 // create user schema
-const UserSchema = new schema ({
+const UserSchema = new Schema({
     name: {
         type: String,
-        required: true
+        required:true
     },
     email: {
         type: String,
-        required: true
+        required:true
     },
     password: {
         type: String,
         required: true
     }
 });
-const newUserSchema = new schema();
+
+UserSchema.pre('save', function(next) {
+    this.password = bcrypt.hashSync(this.password, saltRounds);
+    next();
+});
+
+ const newUserSchema = new Schema();
 // modify a schema
-newUserSchema.add(UserSchema).add({
+ newUserSchema.add(UserSchema).add({
     hasPet: {
         type: Boolean
     }
-});
+ });
 
 module.exports = mongoose.model('User', newUserSchema);
